@@ -6,6 +6,6 @@ services:
     image: oznu/cloudflare-ddns:latest
     restart: always
     environment:
-      - API_KEY={$CLOUDFLARE_API_TOKEN}
+      - API_KEY=$API_KEY
       - ZONE=cawnj.dev
       - PROXIED=true
