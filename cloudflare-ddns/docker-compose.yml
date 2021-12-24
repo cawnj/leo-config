@@ -1,0 +1,11 @@
+---
+version: '2'
+
+services:
+  cloudflare-ddns:
+    image: oznu/cloudflare-ddns:latest
+    restart: always
+    environment:
+      - API_KEY={$CLOUDFLARE_API_TOKEN}
+      - ZONE=cawnj.dev
+      - PROXIED=true
