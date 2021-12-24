@@ -7,7 +7,7 @@ services:
     container_name: rdtclient
     volumes:
       - /export/leo/data/downloads:/data/downloads
-      - /export/leo/config/rdtclient:/data/db
+      - /etc/config/rdtclient:/data/db
     ports:
       - 6500:6500
     logging:

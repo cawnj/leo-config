@@ -10,7 +10,7 @@ services:
       - PGID=1000
       - TZ=Europe/Dublin
     volumes:
-      - /export/leo/config/radarr:/config
+      - /etc/config/radarr:/config
       - /export/leo/data:/data
     ports:
       - 7878:7878

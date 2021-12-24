@@ -10,7 +10,7 @@ services:
       - PGID=1000
       - TZ=Europe/Dublin
     volumes:
-      - /export/leo/config/pyload:/config
+      - /etc/config/pyload:/config
       - /export/leo/data/downloads:/downloads
     ports:
       - 8001:8000

@@ -12,6 +12,6 @@ services:
       - VERSION=docker
       - PLEX_CLAIM=$PLEX_CLAIM
     volumes:
-      - /export/leo/config/plex:/config
+      - /etc/config/plex:/config
       - /export/leo/data/media:/data/media
     restart: unless-stopped
