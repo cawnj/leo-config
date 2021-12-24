@@ -10,6 +10,7 @@ services:
       - PUID=1000
       - PGID=1000
       - VERSION=docker
+      - PLEX_CLAIM=$PLEX_CLAIM
     volumes:
       - /export/leo/config/plex:/config
       - /export/leo/data/media:/data/media
