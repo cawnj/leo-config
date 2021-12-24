@@ -1,0 +1,17 @@
+---
+version: '3.3'
+
+services:
+  rdtclient:
+    image: rogerfar/rdtclient
+    container_name: rdtclient
+    volumes:
+      - /export/leo/data/downloads:/data/downloads
+      - /export/leo/config/rdtclient:/data/db
+    ports:
+      - 6500:6500
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+    restart: unless-stopped
