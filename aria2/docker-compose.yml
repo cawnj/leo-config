@@ -17,7 +17,7 @@ services:
       - TZ=Europe/Dublin
     volumes:
       - /mnt/drive/config/aria2:/config
-      - /mnt/drive/data/downloads:/downloads
+      - /mnt/drive/data/downloads:/data/downloads
     ports:
       - 6800:6800
       - 6888:6888
