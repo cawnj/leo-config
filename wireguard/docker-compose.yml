@@ -16,7 +16,7 @@ services:
       - SERVERPORT=51820
       - PEERS=laptop,phone
       - PEERDNS=auto
-      - INTERNAL_SUBNET=10.13.13.0
+      - INTERNAL_SUBNET=172.20.0.0
       - ALLOWEDIPS=0.0.0.0/0
     volumes:
       - /mnt/drive/config/wireguard:/config
