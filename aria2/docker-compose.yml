@@ -8,7 +8,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - RPC_SECRET={RPC_SECRET}
+      - RPC_SECRET=${RPC_SECRET}
       - RPC_PORT=6800
       - LISTEN_PORT=6888
       - DISK_CACHE=64M
