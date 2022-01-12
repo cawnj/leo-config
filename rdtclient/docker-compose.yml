@@ -5,6 +5,10 @@ services:
   rdtclient:
     image: rogerfar/rdtclient
     container_name: rdtclient
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Dublin
     volumes:
       - /mnt/drive/config/rdtclient:/data/db
       - /mnt/drive/data/downloads:/data/downloads
