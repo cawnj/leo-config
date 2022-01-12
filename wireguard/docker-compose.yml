@@ -19,7 +19,7 @@ services:
       - INTERNAL_SUBNET=10.13.13.0
       - ALLOWEDIPS=0.0.0.0/0
     volumes:
-      - /etc/config/wireguard:/config
+      - /mnt/drive/config/wireguard:/config
       - /lib/modules:/lib/modules
     ports:
       - 51820:51820/udp

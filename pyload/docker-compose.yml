@@ -10,8 +10,8 @@ services:
       - PGID=1000
       - TZ=Europe/Dublin
     volumes:
-      - /etc/config/pyload:/config
-      - /export/leo/data/downloads:/downloads
+      - /mnt/drive/config/pyload:/config
+      - /mnt/drive/data/downloads:/downloads
     ports:
       - 8001:8000
     restart: unless-stopped

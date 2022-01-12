@@ -10,7 +10,7 @@ services:
       - PGID=1000
       - TZ=Europe/Dublin
     volumes:
-      - /etc/config/overseerr:/config
+      - /mnt/drive/config/overseerr:/config
     ports:
       - 5055:5055
     restart: unless-stopped

@@ -10,8 +10,8 @@ services:
       - PGID=1000
       - TZ=Europe/Dublin
     volumes:
-      - /etc/config/sonarr:/config
-      - /export/leo/data:/data
+      - /mnt/drive/config/sonarr:/config
+      - /mnt/drive/data:/data
     ports:
       - 8989:8989
     restart: unless-stopped

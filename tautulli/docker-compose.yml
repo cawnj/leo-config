@@ -10,7 +10,7 @@ services:
       - PGID=1000
       - TZ=Europe/Dublin
     volumes:
-      - /etc/config/tautulli:/config
+      - /mnt/drive/config/tautulli:/config
     ports:
       - 8181:8181
     restart: unless-stopped

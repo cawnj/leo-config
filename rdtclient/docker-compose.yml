@@ -6,8 +6,8 @@ services:
     image: rogerfar/rdtclient
     container_name: rdtclient
     volumes:
-      - /export/leo/data/downloads:/data/downloads
-      - /etc/config/rdtclient:/data/db
+      - /mnt/drive/config/rdtclient:/data/db
+      - /mnt/drive/data/downloads:/data/downloads
     ports:
       - 6500:6500
     logging:

@@ -10,8 +10,8 @@ services:
       - PGID=1000
       - TZ=Europe/Dublin
     volumes:
-      - /etc/config/radarr:/config
-      - /export/leo/data:/data
+      - /mnt/drive/config/radarr:/config
+      - /mnt/drive/data:/data
     ports:
       - 7878:7878
     restart: unless-stopped
