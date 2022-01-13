@@ -22,6 +22,10 @@ services:
       - ./traefik.yml:/traefik.yml:ro
       - ./traefik_dynamic.yml:/traefik_dynamic.yml:ro
       - ./acme.json:/acme.json
+    labels:
+      - "traefik.certificatesResolvers.cloudflare.acme.email=${CF_API_EMAIL}"
+      - "traefik.http.routers.api.tls.domains[0].main=local.cawnj.dev"
+      - "traefik.http.routers.api.tls.domains[0].sans=*.local.cawnj.dev"
 
 networks:
   proxy:
