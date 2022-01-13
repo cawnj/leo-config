@@ -13,9 +13,12 @@ services:
     volumes:
       - /mnt/drive/config/overseerr:/config
     labels:
-      - "traefik.http.routers.overseerr.rule=Host(`overseerr.local.cawnj.dev`)"
+      - "traefik.enable=true"
+      - "traefik.http.routers.overseerr.rule=Host(`overseerr.cawnj.dev`)"
       - "traefik.http.routers.overseerr.tls=true"
       - "traefik.http.routers.overseerr.tls.certresolver=cloudflare"
+      - "traefik.http.routers.overseerr.tls.domains[0].main=cawnj.dev"
+      - "traefik.http.routers.overseerr.tls.domains[0].sans=*.cawnj.dev"
       - "traefik.port=5055"
     networks:
       - proxy
