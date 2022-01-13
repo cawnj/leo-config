@@ -1,0 +1,19 @@
+http:
+  middlewares:
+    simpleAuth:
+      basicAuth:
+        users:
+          - "admin:$apr1$wYFGGUSw$M2qdXMblGxAh579o723Hx0"
+  routers:
+    api:
+      rule: Host(`traefik-dashboard.local.cawnj.dev`)
+      entrypoints:
+        - "websecure"
+      middlewares:
+        - "simpleAuth"
+      service: "api@internal"
+      tls:
+        certResolver: "cloudflare"
+        domains[0]:
+          main: "local.cawnj.dev"
+          sans: "*.local.cawnj.dev"
