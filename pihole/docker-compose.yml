@@ -9,7 +9,7 @@ services:
       - 53:53/tcp
       - 53:53/udp
       - 67:67/udp
-      - 80:80/tcp
+      - 5353:80/tcp
     environment:
       TZ: Europe/Dublin
       WEBPASSWORD: ${WEBPASSWORD}
