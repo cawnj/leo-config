@@ -5,12 +5,21 @@ services:
   overseerr:
     image: lscr.io/linuxserver/overseerr
     container_name: overseerr
+    restart: unless-stopped
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Dublin
     volumes:
       - /mnt/drive/config/overseerr:/config
-    ports:
-      - 5055:5055
-    restart: unless-stopped
+    labels:
+      - "traefik.http.routers.overseerr.rule=Host(`overseerr.local.cawnj.dev`)"
+      - "traefik.http.routers.overseerr.tls=true"
+      - "traefik.http.routers.overseerr.tls.certresolver=cloudflare"
+      - "traefik.port=5055"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
