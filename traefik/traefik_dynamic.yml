@@ -6,7 +6,7 @@ http:
           - "admin:$apr1$wYFGGUSw$M2qdXMblGxAh579o723Hx0"
   routers:
     api:
-      rule: Host(`traefik-dashboard.local.cawnj.dev`)
+      rule: Host(`traefik.local.cawnj.dev`)
       entrypoints:
         - "websecure"
       middlewares:
@@ -14,3 +14,6 @@ http:
       service: "api@internal"
       tls:
         certResolver: "cloudflare"
+        domains:
+          - main: "local.cawnj.dev"
+            sans: "*.local.cawnj.dev"
