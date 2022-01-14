@@ -1,0 +1,95 @@
+---
+# Homepage configuration
+# See https://fontawesome.com/icons for icons options
+
+title: "leo"
+subtitle: "Homer"
+logo: "logo.png"
+
+header: false
+footer: ''
+
+# Optional theme customization
+theme: default
+colors:
+  light:
+    highlight-primary: "#3367d6"
+    highlight-secondary: "#7441b8"
+    highlight-hover: "#9458c6"
+    background: "#f5f5f5"
+    card-background: "#ffffff"
+    text: "#363636"
+    text-header: "#ffffff"
+    text-title: "#303030"
+    text-subtitle: "#424242"
+    card-shadow: rgba(0, 0, 0, 0.1)
+    link: "#3273dc"
+    link-hover: "#363636"
+  dark:
+    highlight-primary: "#3367d6"
+    highlight-secondary: "#7441b8"
+    highlight-hover: "#9458c6"
+    background: "#131313"
+    card-background: "#2b2b2b"
+    text: "#eaeaea"
+    text-header: "#ffffff"
+    text-title: "#fafafa"
+    text-subtitle: "#f5f5f5"
+    card-shadow: rgba(0, 0, 0, 0.4)
+    link: "#3273dc"
+    link-hover: "#ffdd57"
+
+# Optional navbar
+# links: [] # Allows for navbar (dark mode, layout, and search) without any links
+links:
+  - name: "Contribute"
+    icon: "fab fa-github"
+    url: "https://github.com/bastienwirtz/homer"
+    target: "_blank" # optional html a tag target attribute
+  - name: "Wiki"
+    icon: "fas fa-book"
+    url: "https://www.wikipedia.org/"
+
+# Services
+# First level array represent a group.
+# Leave only a "items" key if not using group (group name, icon & tagstyle are optional, section separation will not be displayed).
+services:
+  - name: "Hosting"
+    icon: "fas fa-server"
+    items:
+      - name: "Pihole"
+        logo: "homer-icons/png/pihole.png"
+        url: "https://pihole.local.cawnj.dev/admin/"
+      - name: "Nginx Proxy Manager"
+        logo: "homer-icons/png/traefik.png"
+        url: "https://traefik.local.cawnj.dev/"
+  - name: "Download"
+    icon: "fas fa-download"
+    items:
+      - name: "Sonarr"
+        logo: "homer-icons/png/sonarr.png"
+        url: "https://sonarr.local.cawnj.dev/"
+      - name: "Radarr"
+        logo: "homer-icons/png/radarr.png"
+        url: "https://radarr.local.cawnj.dev/"
+      - name: "Jackett"
+        logo: "homer-icons/png/jackett.png"
+        url: "https://jackett.local.cawnj.dev/"
+      - name: "rdt-client"
+        logo: "homer-icons/png/qbittorrent.png"
+        url: "https://rdtclient.local.cawnj.dev/"
+      - name: "AriaNg"
+        logo: "homer-icons/png/ariang.png"
+        url: "https://ariang.local.cawnj.dev/"
+  - name: "Media"
+    icon: "fas fa-video"
+    items:
+      - name: "Plex"
+        logo: "homer-icons/png/plex.png"
+        url: "https://app.plex.tv/"
+      - name: "Overseerr"
+        logo: "homer-icons/png/overseerr.png"
+        url: "https://overseerr.local.cawnj.dev/"
+      - name: "Tautulli"
+        logo: "homer-icons/png/tautulli.png"
+        url: "https://tautulli.local.cawnj.dev/"
