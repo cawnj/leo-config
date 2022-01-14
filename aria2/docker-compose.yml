@@ -25,12 +25,12 @@ services:
         max-size: 1m
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.aria2d.entrypoints=https"
-      - "traefik.http.routers.aria2d.rule=Host(`aria2d.local.cawnj.dev`)"
-      - "traefik.http.routers.aria2d.tls.certresolver=cloudflare"
-      - "traefik.http.routers.aria2d.tls.domains[0].main=local.cawnj.dev"
-      - "traefik.http.routers.aria2d.tls.domains[0].sans=*.local.cawnj.dev"
-      - "traefik.http.services.aria2d.loadbalancer.server.port=6800"
+      - "traefik.http.routers.aria2.entrypoints=https"
+      - "traefik.http.routers.aria2.rule=Host(`aria2.local.cawnj.dev`)"
+      - "traefik.http.routers.aria2.tls.certresolver=cloudflare"
+      - "traefik.http.routers.aria2.tls.domains[0].main=local.cawnj.dev"
+      - "traefik.http.routers.aria2.tls.domains[0].sans=*.local.cawnj.dev"
+      - "traefik.http.services.aria2.loadbalancer.server.port=6800"
     networks:
       - proxy
 
@@ -45,12 +45,12 @@ services:
         max-size: 1m
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.aria2.entrypoints=https"
-      - "traefik.http.routers.aria2.rule=Host(`aria2.local.cawnj.dev`)"
-      - "traefik.http.routers.aria2.tls.certresolver=cloudflare"
-      - "traefik.http.routers.aria2.tls.domains[0].main=local.cawnj.dev"
-      - "traefik.http.routers.aria2.tls.domains[0].sans=*.local.cawnj.dev"
-      - "traefik.http.services.aria2.loadbalancer.server.port=6880"
+      - "traefik.http.routers.ariang.entrypoints=https"
+      - "traefik.http.routers.ariang.rule=Host(`ariang.local.cawnj.dev`)"
+      - "traefik.http.routers.ariang.tls.certresolver=cloudflare"
+      - "traefik.http.routers.ariang.tls.domains[0].main=local.cawnj.dev"
+      - "traefik.http.routers.ariang.tls.domains[0].sans=*.local.cawnj.dev"
+      - "traefik.http.services.ariang.loadbalancer.server.port=6880"
     networks:
       - proxy
 
