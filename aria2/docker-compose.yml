@@ -5,6 +5,7 @@ services:
   aria2:
     container_name: aria2
     image: p3terx/aria2-pro
+    restart: unless-stopped
     environment:
       - PUID=1000
       - PGID=1000
@@ -18,12 +19,41 @@ services:
     volumes:
       - /mnt/drive/config/aria2:/config
       - /mnt/drive/data/downloads:/data/downloads
-    ports:
-      - 6800:6800
-      - 6888:6888
-      - 6888:6888/udp
     logging:
       driver: json-file
       options:
         max-size: 1m
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.aria2d.entrypoints=https"
+      - "traefik.http.routers.aria2d.rule=Host(`aria2d.local.cawnj.dev`)"
+      - "traefik.http.routers.aria2d.tls.certresolver=cloudflare"
+      - "traefik.http.routers.aria2d.tls.domains[0].main=local.cawnj.dev"
+      - "traefik.http.routers.aria2d.tls.domains[0].sans=*.local.cawnj.dev"
+      - "traefik.http.services.aria2d.loadbalancer.server.port=6800"
+    networks:
+      - proxy
+
+  ariang:
+    container_name: ariang
+    image: p3terx/ariang
+    command: --port 6880 --ipv6
     restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 1m
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.aria2.entrypoints=https"
+      - "traefik.http.routers.aria2.rule=Host(`aria2.local.cawnj.dev`)"
+      - "traefik.http.routers.aria2.tls.certresolver=cloudflare"
+      - "traefik.http.routers.aria2.tls.domains[0].main=local.cawnj.dev"
+      - "traefik.http.routers.aria2.tls.domains[0].sans=*.local.cawnj.dev"
+      - "traefik.http.services.aria2.loadbalancer.server.port=6880"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
