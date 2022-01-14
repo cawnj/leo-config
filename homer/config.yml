@@ -45,10 +45,11 @@ links:
   - name: "Contribute"
     icon: "fab fa-github"
     url: "https://github.com/bastienwirtz/homer"
-    target: "_blank" # optional html a tag target attribute
+    target: "_blank"
   - name: "Wiki"
     icon: "fas fa-book"
-    url: "https://www.wikipedia.org/"
+    url: "https://github.com/bastienwirtz/homer/tree/main/docs"
+    target: "_blank"
 
 # Services
 # First level array represent a group.
@@ -89,7 +90,7 @@ services:
         url: "https://app.plex.tv/"
       - name: "Overseerr"
         logo: "homer-icons/png/overseerr.png"
-        url: "https://overseerr.local.cawnj.dev/"
+        url: "https://overseerr.cawnj.dev/"
       - name: "Tautulli"
         logo: "homer-icons/png/tautulli.png"
         url: "https://tautulli.local.cawnj.dev/"
