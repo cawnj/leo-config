@@ -1,19 +1,20 @@
 http:
-  middlewares:
-    simpleAuth:
-      basicAuth:
-        users:
-          - "admin:$apr1$wYFGGUSw$M2qdXMblGxAh579o723Hx0"
   routers:
     api:
-      rule: Host(`traefik.local.cawnj.dev`)
-      entrypoints:
+      rule: "Host(`traefik.local.cawnj.dev`)"
+      entryPoints:
         - "https"
       middlewares:
         - "simpleAuth"
-      service: "api@internal"
       tls:
         certResolver: "cloudflare"
         domains:
           - main: "local.cawnj.dev"
             sans: "*.local.cawnj.dev"
+      service: "api@internal"
+
+  middlewares:
+    simpleAuth:
+      basicAuth:
+        users:
+          - "admin:$apr1$wYFGGUSw$M2qdXMblGxAh579o723Hx0"
