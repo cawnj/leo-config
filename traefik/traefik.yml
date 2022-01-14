@@ -1,28 +1,32 @@
-entryPoints:
-  web:
-    address: ":80"
-    http:
-      redirections:
-        entryPoint:
-          to: "websecure"
-          scheme: "https"
-  websecure:
-    address: ":443"
+global:
+  checkNewVersion: true
 
 api:
   dashboard: true
 
+entryPoints:
+  http:
+    address: ":80"
+    http:
+      redirections:
+        entryPoint:
+          to: "https"
+          scheme: "https"
+  https:
+    address: ":443"
+
 certificatesResolvers:
   cloudflare:
     acme:
-      storage: acme.json
+      storage: "acme.json"
       dnsChallenge:
-        provider: cloudflare
+        provider: "cloudflare"
 
 providers:
   docker:
     watch: true
     network: "proxy"
     exposedbydefault: false
+    endpoint: "unix:///var/run/docker.sock"
   file:
-    filename: traefik_dynamic.yml
+    filename: "traefik_dynamic.yml"

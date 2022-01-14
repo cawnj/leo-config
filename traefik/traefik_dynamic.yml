@@ -8,7 +8,7 @@ http:
     api:
       rule: Host(`traefik.local.cawnj.dev`)
       entrypoints:
-        - "websecure"
+        - "https"
       middlewares:
         - "simpleAuth"
       service: "api@internal"
