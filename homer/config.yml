@@ -61,7 +61,7 @@ services:
       - name: "Pihole"
         logo: "homer-icons/png/pihole.png"
         url: "https://pihole.local.cawnj.dev/admin/"
-      - name: "Nginx Proxy Manager"
+      - name: "Traefik"
         logo: "homer-icons/png/traefik.png"
         url: "https://traefik.local.cawnj.dev/"
   - name: "Download"
