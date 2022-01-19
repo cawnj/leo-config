@@ -5,6 +5,9 @@ services:
   wireguard:
     image: lscr.io/linuxserver/wireguard
     container_name: wireguard
+    restart: unless-stopped
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
@@ -16,13 +19,20 @@ services:
       - SERVERPORT=51820
       - PEERS=laptop,phone
       - PEERDNS=auto
-      - INTERNAL_SUBNET=172.20.0.0
-      - ALLOWEDIPS=0.0.0.0/0
     volumes:
       - /mnt/drive/config/wireguard:/config
       - /lib/modules:/lib/modules
-    ports:
-      - 51820:51820/udp
-    sysctls:
-      - net.ipv4.conf.all.src_valid_mark=1
-    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.wireguard.entrypoints=https"
+      - "traefik.http.routers.wireguard.rule=Host(`wireguard.cawnj.dev`)"
+      - "traefik.http.routers.wireguard.tls.certresolver=cloudflare"
+      - "traefik.http.routers.wireguard.tls.domains[0].main=cawnj.dev"
+      - "traefik.http.routers.wireguard.tls.domains[0].sans=*.cawnj.dev"
+      - "traefik.http.services.wireguard.loadbalancer.server.port=51820"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
