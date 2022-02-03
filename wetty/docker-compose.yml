@@ -8,7 +8,7 @@ services:
     restart: unless-stopped
     command:
       - --base=/
-      - --ssh-host=localhost
+      - --ssh-host=192.168.1.202
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.wetty.entrypoints=https"
