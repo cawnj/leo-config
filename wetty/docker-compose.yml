@@ -18,7 +18,7 @@ services:
       - "traefik.http.routers.wetty.tls.domains[0].sans=*.cawnj.dev"
       - "traefik.http.routers.wetty.tls.domains[1].main=local.cawnj.dev"
       - "traefik.http.routers.wetty.tls.domains[1].sans=*.local.cawnj.dev"
-      - "traefik.http.services.wetty.loadbalancer.server.port=5055"
+      - "traefik.http.services.wetty.loadbalancer.server.port=3000"
       - "traefik.http.middlewares.simpleAuth.basicauth.users=wetty:$$apr1$$stjnq9km$$YZ.UkrKEC3/AebvezBpLy1"
       - "traefik.http.routers.wetty.middlewares=simpleAuth"
     networks:
