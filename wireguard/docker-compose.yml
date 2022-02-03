@@ -6,7 +6,6 @@ services:
     image: lscr.io/linuxserver/wireguard
     container_name: wireguard
     restart: unless-stopped
-    network_mode: host
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
     cap_add:
@@ -20,6 +19,10 @@ services:
       - SERVERPORT=51820
       - PEERS=laptop,phone,external
       - PEERDNS=auto
+      - INTERNAL_SUBNET=10.13.13.0
+      - ALLOWEDIPS=0.0.0.0/0, 192.168.1.0/24
+    ports:
+      - 51820:51820/udp
     volumes:
       - /mnt/drive/config/wireguard:/config
       - /lib/modules:/lib/modules
