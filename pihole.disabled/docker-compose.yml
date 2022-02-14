@@ -15,7 +15,7 @@ services:
       WEBPASSWORD: ${WEBPASSWORD}
     volumes:
       - /mnt/drive/config/pihole/etc-pihole/:/etc/pihole/
-      - /mnt/drive/config/etc-dnsmasq.d/:/etc/dnsmasq.d/
+      - /mnt/drive/config/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/
     cap_add:
       - NET_ADMIN
     restart: unless-stopped
