@@ -1,0 +1,25 @@
+version: "3.3"
+
+services:
+    filehost:
+        image: "halverneus/static-file-server:latest"
+        container_name: filehost
+        restart: unless-stopped
+        volumes:
+          - "/mnt/drive/data/filehost:/web"
+        labels:
+          - "traefik.enable=true"
+          - "traefik.http.routers.filehost.entrypoints=https"
+          - "traefik.http.routers.filehost.rule=Host(`filehost.cawnj.dev`) || Host(`filehost.local.cawnj.dev`)"
+          - "traefik.http.routers.filehost.tls.certresolver=cloudflare"
+          - "traefik.http.routers.filehost.tls.domains[0].main=cawnj.dev"
+          - "traefik.http.routers.filehost.tls.domains[0].sans=*.cawnj.dev"
+          - "traefik.http.routers.filehost.tls.domains[1].main=local.cawnj.dev"
+          - "traefik.http.routers.filehost.tls.domains[1].sans=*.local.cawnj.dev"
+          - "traefik.http.services.filehost.loadbalancer.server.port=8080"
+        networks:
+          - proxy
+
+networks:
+  proxy:
+    external: true
