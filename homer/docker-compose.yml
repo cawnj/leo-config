@@ -6,6 +6,10 @@ services:
     image: b4bz/homer
     container_name: homer
     restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Dublin
     volumes:
       - /mnt/drive/config/homer:/www/assets
       - ./config.yml:/www/assets/config.yml
