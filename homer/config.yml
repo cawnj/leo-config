@@ -7,7 +7,7 @@ subtitle: "Homer"
 logo: "logo.png"
 
 header: false
-footer: ''
+footer: ""
 
 # Optional theme customization
 theme: default
@@ -87,7 +87,7 @@ services:
     items:
       - name: "Plex"
         logo: "homer-icons/png/plex.png"
-        url: "https://app.plex.tv/"
+        url: "https://plex.local.cawnj.dev/"
       - name: "Overseerr"
         logo: "homer-icons/png/overseerr.png"
         url: "https://overseerr.cawnj.dev/"
