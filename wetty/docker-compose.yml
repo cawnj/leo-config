@@ -1,5 +1,5 @@
 ---
-version: '2'
+version: "2"
 
 services:
   wetty:
@@ -8,7 +8,7 @@ services:
     restart: unless-stopped
     command:
       - --base=/
-      - --ssh-host=192.168.1.202
+      - --ssh-host=192.168.1.201
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.wetty.entrypoints=https"
