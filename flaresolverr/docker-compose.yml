@@ -1,0 +1,26 @@
+version: "2.1"
+
+services:
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    restart: unless-stopped
+    environment:
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      - LOG_HTML=${LOG_HTML:-false}
+      - CAPTCHA_SOLVER=${CAPTCHA_SOLVER:-none}
+      - TZ=Europe/London
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.flaresolverr.entrypoints=https"
+      - "traefik.http.routers.flaresolverr.rule=Host(`flaresolverr.local.cawnj.dev`)"
+      - "traefik.http.routers.flaresolverr.tls.certresolver=cloudflare"
+      - "traefik.http.routers.flaresolverr.tls.domains[0].main=local.cawnj.dev"
+      - "traefik.http.routers.flaresolverr.tls.domains[0].sans=*.local.cawnj.dev"
+      - "traefik.http.services.flaresolverr.loadbalancer.server.port=8191"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
