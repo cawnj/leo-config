@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# pull any new images and
+# recreate the containers if a new image is pulled
+
 now=`date +"%Y-%m-%d %T"`
 printf "%s\n---\n" "$now"
 for dir in ./*; do 
