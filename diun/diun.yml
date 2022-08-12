@@ -1,0 +1,17 @@
+# diun.yml
+
+watch:
+  workers: 20
+  schedule: "0 */6 * * *"
+
+providers:
+  docker:
+    watchStopped: true
+
+notif:
+  discord:
+    renderFields: true
+    timeout: 10s
+    templateBody: |
+      Docker tag {{ .Entry.Image }} which you subscribed to through {{ .Entry.Provider }} provider has been released.
+
