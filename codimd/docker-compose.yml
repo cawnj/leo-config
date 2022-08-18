@@ -1,0 +1,48 @@
+version: "3"
+
+services:
+  database:
+    image: postgres:11.6-alpine
+    restart: unless-stopped
+    container_name: codimd-db
+    environment:
+      - POSTGRES_USER=codimd
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=codimd
+    volumes:
+      - database_data:/var/lib/postgresql/data
+    networks:
+      - internal
+  codimd:
+    image: hackmdio/hackmd:2.4.2
+    container_name: codimd
+    restart: unless-stopped
+    environment:
+      - CMD_DB_URL=postgres://codimd:${POSTGRES_PASSWORD}@codimd-db/codimd
+      - CMD_USECDN=false
+    depends_on:
+      - database
+    volumes:
+      - upload_data:/home/hackmd/app/public/uploads
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.md.entrypoints=https"
+      - "traefik.http.routers.md.rule=Host(`md.cawnj.dev`) || Host(`md.local.cawnj.dev`)"
+      - "traefik.http.routers.md.tls.certresolver=cloudflare"
+      - "traefik.http.routers.md.tls.domains[0].main=cawnj.dev"
+      - "traefik.http.routers.md.tls.domains[0].sans=*.cawnj.dev"
+      - "traefik.http.routers.md.tls.domains[1].main=local.cawnj.dev"
+      - "traefik.http.routers.md.tls.domains[1].sans=*.local.cawnj.dev"
+      - "traefik.http.services.md.loadbalancer.server.port=3000"
+    networks:
+      - proxy
+      - internal
+
+networks:
+  internal:
+  proxy:
+    external: true
+
+volumes:
+  database_data:
+  upload_data:
