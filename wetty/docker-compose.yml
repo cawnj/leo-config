@@ -9,6 +9,10 @@ services:
     command:
       - --base=/
       - --ssh-host=192.168.1.201
+      - --ssh-key=/root/.ssh/ssh-key
+      - --ssh-auth=publickey
+    volumes:
+      - /mnt/drive/config/wetty/ssh-key:/root/.ssh/ssh-key
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.wetty.entrypoints=https"
