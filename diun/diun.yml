@@ -6,6 +6,7 @@ watch:
 
 providers:
   docker:
+    watchByDefault: true
     watchStopped: true
 
 notif:
