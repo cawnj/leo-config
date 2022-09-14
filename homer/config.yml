@@ -94,3 +94,12 @@ services:
       - name: "Tautulli"
         logo: "homer-icons/png/tautulli.png"
         url: "https://tautulli.local.cawnj.dev/"
+  - name: "Personal"
+    icon: "fas fa-user"
+    items:
+      - name: "CodiMD"
+        logo: "homer-icons/png/codimd.png"
+        url: "https://md.cawnj.dev"
+      - name: "Filehost"
+        logo: "homer-icons/png/filebrowser.png"
+        url: "https://filehost.cawnj.dev"
