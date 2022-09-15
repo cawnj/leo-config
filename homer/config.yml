@@ -1,59 +1,50 @@
 ---
-# Homepage configuration
-# See https://fontawesome.com/icons for icons options
-
 title: "leo"
 subtitle: "Homer"
-logo: "logo.png"
 
 header: false
 footer: ""
 
-# Optional theme customization
+defaults:
+  layout: "columns"
+  colorTheme: "dark"
+
+stylesheet:
+  - "assets/custom.css"
+
+columns: "auto" # You can change this to any number that is a factor of 12: (1, 2, 3, 4, 6, 12)
 theme: default
 colors:
   light:
-    highlight-primary: "#3367d6"
-    highlight-secondary: "#7441b8"
-    highlight-hover: "#9458c6"
-    background: "#f5f5f5"
-    card-background: "#ffffff"
-    text: "#363636"
-    text-header: "#ffffff"
-    text-title: "#303030"
-    text-subtitle: "#424242"
-    card-shadow: rgba(0, 0, 0, 0.1)
+    highlight-primary: "#fff5f2"
+    highlight-secondary: "#fff5f2"
+    highlight-hover: "#bebebe"
+    background: "#12152B"
+    card-background: "rgba(255, 245, 242, 0.8)"
+    text: "#ffffff"
+    text-header: "#fafafa"
+    text-title: "#000000"
+    text-subtitle: "#111111"
+    card-shadow: rgba(0, 0, 0, 0.5)
     link: "#3273dc"
-    link-hover: "#363636"
+    link-hover: "#2e4053"
+    background-image: "../assets/wallpaper-light.jpeg" # Change wallpaper.jpeg to the name of your own custom wallpaper!
   dark:
-    highlight-primary: "#3367d6"
-    highlight-secondary: "#7441b8"
-    highlight-hover: "#9458c6"
-    background: "#131313"
-    card-background: "#2b2b2b"
+    highlight-primary: "#181C3A"
+    highlight-secondary: "#181C3A"
+    highlight-hover: "#1F2347"
+    background: "#12152B"
+    card-background: "rgba(24, 28, 58, 0.8)"
     text: "#eaeaea"
-    text-header: "#ffffff"
+    text-header: "#7C71DD"
     text-title: "#fafafa"
-    text-subtitle: "#f5f5f5"
-    card-shadow: rgba(0, 0, 0, 0.4)
-    link: "#3273dc"
-    link-hover: "#ffdd57"
-
-# Optional navbar
-# links: [] # Allows for navbar (dark mode, layout, and search) without any links
-links:
-  - name: "Contribute"
-    icon: "fab fa-github"
-    url: "https://github.com/bastienwirtz/homer"
-    target: "_blank"
-  - name: "Wiki"
-    icon: "fas fa-book"
-    url: "https://github.com/bastienwirtz/homer/tree/main/docs"
-    target: "_blank"
+    text-subtitle: "#8B8D9C"
+    card-shadow: rgba(0, 0, 0, 0.5)
+    link: "#c1c1c1"
+    link-hover: "#fafafa"
+    background-image: "../assets/wallpaper.jpeg"
 
 # Services
-# First level array represent a group.
-# Leave only a "items" key if not using group (group name, icon & tagstyle are optional, section separation will not be displayed).
 services:
   - name: "Hosting"
     icon: "fas fa-server"
@@ -98,8 +89,8 @@ services:
     icon: "fas fa-user"
     items:
       - name: "CodiMD"
-        logo: "homer-icons/png/codimd.png"
+        logo: "custom-icons/codimd.png"
         url: "https://md.cawnj.dev"
       - name: "Filehost"
-        logo: "homer-icons/png/filebrowser.png"
+        logo: "custom-icons/filehost.png"
         url: "https://filehost.cawnj.dev"

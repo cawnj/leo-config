@@ -1,3 +1,6 @@
 [submodule "homer/homer-icons"]
 	path = homer/homer-icons
 	url = https://github.com/NX211/homer-icons.git
+[submodule "homer/homer-theme"]
+	path = homer/homer-theme
+	url = https://github.com/walkxcode/homer-theme.git
