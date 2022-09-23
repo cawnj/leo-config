@@ -1,0 +1,70 @@
+version: "3"
+
+services:
+  nextcloud:
+    image: nextcloud:latest
+    container_name: nextcloud
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Dublin
+      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_HOST=nextcloud-db
+      - APACHE_DISABLE_REWRITE_IP=1
+      - TRUSTED_PROXIES=traefik
+      - OVERWRITEPROTOCOL=https
+    volumes:
+      - /mnt/drive/config/nextcloud:/var/www/html
+      - /mnt/drive/data/nextcloud:/var/www/html/data
+    networks:
+      - internal
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nextcloud.entrypoints=https"
+      - "traefik.http.routers.nextcloud.rule=Host(`nextcloud.cawnj.dev`) || Host(`nextcloud.local.cawnj.dev`)"
+      - "traefik.http.middlewares.nc-rep.redirectregex.regex=https://(.*)/.well-known/(card|cal)dav"
+      - "traefik.http.middlewares.nc-rep.redirectregex.replacement=https://$$1/remote.php/dav/"
+      - "traefik.http.middlewares.nc-rep.redirectregex.permanent=true"
+      - "traefik.http.middlewares.nc-header.headers.referrerPolicy=no-referrer"
+      - "traefik.http.middlewares.nc-header.headers.stsSeconds=31536000"
+      - "traefik.http.middlewares.nc-header.headers.forceSTSHeader=true"
+      - "traefik.http.middlewares.nc-header.headers.stsPreload=true"
+      - "traefik.http.middlewares.nc-header.headers.stsIncludeSubdomains=true"
+      - "traefik.http.middlewares.nc-header.headers.browserXssFilter=true"
+      - "traefik.http.middlewares.nc-header.headers.customRequestHeaders.X-Forwarded-Proto=https"
+      - "traefik.http.routers.nextcloud.middlewares=nc-rep,nc-header"
+      - "traefik.http.routers.nextcloud.tls.certresolver=cloudflare"
+      - "traefik.http.routers.nextcloud.tls.domains[0].main=cawnj.dev"
+      - "traefik.http.routers.nextcloud.tls.domains[0].sans=*.cawnj.dev"
+      - "traefik.http.routers.nextcloud.tls.domains[1].main=local.cawnj.dev"
+      - "traefik.http.routers.nextcloud.tls.domains[1].sans=*.local.cawnj.dev"
+      - "traefik.http.services.nextcloud.loadbalancer.server.port=80"
+  db:
+    image: mariadb:10.5
+    container_name: nextcloud-db
+    restart: unless-stopped
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    volumes:
+      - db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+    networks:
+      - internal
+
+volumes:
+  db:
+
+networks:
+  internal:
+  proxy:
+    external: true
+
