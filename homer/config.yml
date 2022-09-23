@@ -55,6 +55,9 @@ services:
       - name: "Traefik"
         logo: "homer-icons/png/traefik.png"
         url: "https://traefik.local.cawnj.dev/"
+      - name: "Filehost"
+        logo: "custom-icons/filehost.png"
+        url: "https://filehost.cawnj.dev/"
   - name: "Download"
     icon: "fas fa-download"
     items:
@@ -90,10 +93,8 @@ services:
     items:
       - name: "Nextcloud"
         logo: "homer-icons/png/nextcloud.png"
-        url: "https://nextcloud.cawnj.dev"
+        url: "https://nextcloud.cawnj.dev/"
       - name: "CodiMD"
         logo: "custom-icons/codimd.png"
-        url: "https://md.cawnj.dev"
-      - name: "Filehost"
-        logo: "custom-icons/filehost.png"
-        url: "https://filehost.cawnj.dev"
+        url: "https://md.cawnj.dev/"
+
