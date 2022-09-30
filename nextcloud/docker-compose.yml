@@ -16,6 +16,7 @@ services:
       - MYSQL_DATABASE=nextcloud
       - MYSQL_HOST=nextcloud-db
       - APACHE_DISABLE_REWRITE_IP=1
+      - NEXTCLOUD_TRUSTED_DOMAINS=nextcloud.cawnj.dev,nextcloud.local.cawnj.dev
       - TRUSTED_PROXIES=traefik
       - OVERWRITEPROTOCOL=https
     volumes:
