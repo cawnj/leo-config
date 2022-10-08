@@ -1,8 +1,7 @@
-global:
-  checkNewVersion: true
-
 api:
   dashboard: true
+
+accessLog: {}
 
 entryPoints:
   http:
@@ -12,6 +11,7 @@ entryPoints:
         entryPoint:
           to: "https"
           scheme: "https"
+          permanent: true
   https:
     address: ":443"
     # forwarding from cloudflare proxy
@@ -39,6 +39,9 @@ certificatesResolvers:
       storage: "acme.json"
       dnsChallenge:
         provider: "cloudflare"
+        delayBeforeCheck: 30
+        resolvers:
+          - "1.1.1.1:53"
 
 providers:
   docker:
