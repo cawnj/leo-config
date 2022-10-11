@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  hastebin:
+    image: rlister/hastebin
+    container_name: hastebin
+    restart: unless-stopped
+    environment:
+      STORAGE_TYPE: redis
+      STORAGE_HOST: redis
+    networks:
+      - proxy
+      - internal
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.hastebin.entrypoints=https"
+      - "traefik.http.routers.hastebin.rule=Host(`hastebin.cawnj.dev`) || Host(`hastebin.local.cawnj.dev`)"
+      - "traefik.http.routers.hastebin.tls.certresolver=cloudflare"
+      - "traefik.http.routers.hastebin.tls.domains[0].main=cawnj.dev"
+      - "traefik.http.routers.hastebin.tls.domains[0].sans=*.cawnj.dev"
+      - "traefik.http.routers.hastebin.tls.domains[1].main=local.cawnj.dev"
+      - "traefik.http.routers.hastebin.tls.domains[1].sans=*.local.cawnj.dev"
+      - "traefik.http.services.hastebin.loadbalancer.server.port=7777"
+  redis:
+    image: redis
+    container_name: hastebin-redis
+    restart: unless-stopped
+    volumes:
+      - /mnt/drive/data/hastebin:/data
+    entrypoint: redis-server --appendonly yes
+    networks:
+      - internal
+
+networks:
+  internal:
+  proxy:
+    external: true
+
