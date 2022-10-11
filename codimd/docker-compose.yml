@@ -14,12 +14,13 @@ services:
     networks:
       - internal
   codimd:
-    image: hackmdio/hackmd:2.4.2
+    image: hackmdio/hackmd:2.4.2-cjk
     container_name: codimd
     restart: unless-stopped
     environment:
       - CMD_DB_URL=postgres://codimd:${POSTGRES_PASSWORD}@codimd-db/codimd
       - CMD_USECDN=false
+      - QT_QPA_PLATFORM=
     depends_on:
       - database
     volumes:
