@@ -88,6 +88,9 @@ services:
       - name: "Tautulli"
         logo: "homer-icons/png/tautulli.png"
         url: "https://tautulli.local.cawnj.dev/"
+      - name: "Pasta"
+        logo: "custom-icons/pasta.png"
+        url: "https://pasta.local.cawnj.dev/"
   - name: "Personal"
     icon: "fas fa-user"
     items:
@@ -100,4 +103,7 @@ services:
       - name: "CodiMD"
         logo: "custom-icons/codimd.png"
         url: "https://md.cawnj.dev/"
+      - name: "Hastebin"
+        logo: "custom-icons/hastebin.png"
+        url: "https://hastebin.cawnj.dev/"
 
