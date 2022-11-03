@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  pihole:
+    image: pihole/pihole:latest
+    container_name: pihole
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Dublin
+      - WEBPASSWORD=${WEBPASSWORD}
+      - FTLCONF_LOCAL_IPV4=192.168.1.201
+      - PIHOLE_DNS_=1.1.1.1;1.0.0.1
+      - DNSSEC=true
+      - PIHOLE_UID=1000
+      - PIHOLE_GID=1000
+    volumes:
+      - /mnt/drive/config/pihole/etc-pihole:/etc/pihole
+      - /mnt/drive/config/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "853:853"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pihole.entrypoints=https"
+      - "traefik.http.routers.pihole.rule=Host(`pihole.local.cawnj.dev`)"
+      - "traefik.http.routers.pihole.tls.certresolver=cloudflare"
+      - "traefik.http.routers.pihole.tls.domains[0].main=local.cawnj.dev"
+      - "traefik.http.routers.pihole.tls.domains[0].sans=*.local.cawnj.dev"
+      - "traefik.http.services.pihole.loadbalancer.server.port=80"
+      - "traefik.http.routers.pihole.middlewares=pihole-admin"
+      - "traefik.http.middlewares.pihole-admin.addprefix.prefix=/admin"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
