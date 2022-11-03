@@ -15,6 +15,7 @@ services:
       - PIHOLE_GID=1000
     volumes:
       - /mnt/drive/config/pihole/etc-pihole:/etc/pihole
+      - ./adlists.list:/etc/pihole/adlists.list
       - /mnt/drive/config/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
     ports:
       - "53:53/tcp"
