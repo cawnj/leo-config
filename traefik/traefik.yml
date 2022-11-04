@@ -32,6 +32,14 @@ entryPoints:
         - "104.24.0.0/14"
         - "172.64.0.0/13"
         - "131.0.72.0/22"
+    http:
+      tls:
+        certresolver: cloudflare
+        domains:
+          - main: "cawnj.dev"
+            sans: "*.cawnj.dev"
+          - main: "local.cawnj.dev"
+            sans: "*.local.cawnj.dev"
 
 certificatesResolvers:
   cloudflare:
