@@ -40,6 +40,8 @@ entryPoints:
             sans: "*.cawnj.dev"
           - main: "local.cawnj.dev"
             sans: "*.local.cawnj.dev"
+          - main: "continens.xyz"
+            sans: "*.continens.xyz"
 
 certificatesResolvers:
   cloudflare:
