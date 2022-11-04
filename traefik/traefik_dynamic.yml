@@ -1,17 +1,5 @@
 http:
   routers:
-    api:
-      rule: "Host(`traefik.local.cawnj.dev`)"
-      entryPoints:
-        - "https"
-      middlewares:
-        - "simpleAuth"
-      tls:
-        certResolver: "cloudflare"
-        domains:
-          - main: "local.cawnj.dev"
-            sans: "*.local.cawnj.dev"
-      service: "api@internal"
     plex:
       rule: "Host(`plex.local.cawnj.dev`)"
       entryPoints:
@@ -30,10 +18,6 @@ http:
         servers:
           - url: "http://192.168.1.201:32400"
   middlewares:
-    simpleAuth:
-      basicAuth:
-        users:
-          - "admin:$apr1$wYFGGUSw$M2qdXMblGxAh579o723Hx0"
     plexHeaders:
       headers:
         sslRedirect: true

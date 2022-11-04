@@ -22,6 +22,13 @@ services:
       - ./traefik.yml:/traefik.yml:ro
       - ./traefik_dynamic.yml:/traefik_dynamic.yml:ro
       - ./acme.json:/acme.json
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.api.entrypoints=https"
+      - "traefik.http.routers.api.rule=Host(`traefik.local.cawnj.dev`)"
+      - "traefik.http.routers.api.service=api@internal"
+      - "traefik.http.routers.api.middlewares=apiSimpleAuth"
+      - "traefik.http.middlewares.apiSimpleAuth.basicauth.users=admin:$$apr1$$wYFGGUSw$$M2qdXMblGxAh579o723Hx0"
 
 networks:
   proxy:
