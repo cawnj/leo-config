@@ -20,9 +20,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.homer.entrypoints=https"
       - "traefik.http.routers.homer.rule=Host(`homer.local.cawnj.dev`)"
-      - "traefik.http.routers.homer.tls.certresolver=cloudflare"
-      - "traefik.http.routers.homer.tls.domains[0].main=local.cawnj.dev"
-      - "traefik.http.routers.homer.tls.domains[0].sans=*.local.cawnj.dev"
       - "traefik.http.services.homer.loadbalancer.server.port=8080"
     networks:
       - proxy

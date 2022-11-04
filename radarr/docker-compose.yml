@@ -17,9 +17,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.radarr.entrypoints=https"
       - "traefik.http.routers.radarr.rule=Host(`radarr.local.cawnj.dev`)"
-      - "traefik.http.routers.radarr.tls.certresolver=cloudflare"
-      - "traefik.http.routers.radarr.tls.domains[0].main=local.cawnj.dev"
-      - "traefik.http.routers.radarr.tls.domains[0].sans=*.local.cawnj.dev"
       - "traefik.http.services.radarr.loadbalancer.server.port=7878"
     networks:
       - proxy

@@ -21,9 +21,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.rdtclient.entrypoints=https"
       - "traefik.http.routers.rdtclient.rule=Host(`rdtclient.local.cawnj.dev`)"
-      - "traefik.http.routers.rdtclient.tls.certresolver=cloudflare"
-      - "traefik.http.routers.rdtclient.tls.domains[0].main=local.cawnj.dev"
-      - "traefik.http.routers.rdtclient.tls.domains[0].sans=*.local.cawnj.dev"
       - "traefik.http.services.rdtclient.loadbalancer.server.port=6500"
     networks:
       - proxy

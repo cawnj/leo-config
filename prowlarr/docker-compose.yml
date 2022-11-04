@@ -15,9 +15,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.prowlarr.entrypoints=https"
       - "traefik.http.routers.prowlarr.rule=Host(`prowlarr.local.cawnj.dev`)"
-      - "traefik.http.routers.prowlarr.tls.certresolver=cloudflare"
-      - "traefik.http.routers.prowlarr.tls.domains[0].main=local.cawnj.dev"
-      - "traefik.http.routers.prowlarr.tls.domains[0].sans=*.local.cawnj.dev"
       - "traefik.http.services.prowlarr.loadbalancer.server.port=9696"
     networks:
       - proxy

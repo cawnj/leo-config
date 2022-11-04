@@ -40,11 +40,6 @@ services:
       - "traefik.http.middlewares.nc-header.headers.browserXssFilter=true"
       - "traefik.http.middlewares.nc-header.headers.customRequestHeaders.X-Forwarded-Proto=https"
       - "traefik.http.routers.nextcloud.middlewares=nc-rep,nc-header"
-      - "traefik.http.routers.nextcloud.tls.certresolver=cloudflare"
-      - "traefik.http.routers.nextcloud.tls.domains[0].main=cawnj.dev"
-      - "traefik.http.routers.nextcloud.tls.domains[0].sans=*.cawnj.dev"
-      - "traefik.http.routers.nextcloud.tls.domains[1].main=local.cawnj.dev"
-      - "traefik.http.routers.nextcloud.tls.domains[1].sans=*.local.cawnj.dev"
       - "traefik.http.services.nextcloud.loadbalancer.server.port=80"
   db:
     image: mariadb:10.5

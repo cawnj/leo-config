@@ -11,11 +11,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.uptimekuma.entrypoints=https"
       - "traefik.http.routers.uptimekuma.rule=Host(`status.cawnj.dev`) || Host(`status.local.cawnj.dev`)"
-      - "traefik.http.routers.uptimekuma.tls.certresolver=cloudflare"
-      - "traefik.http.routers.uptimekuma.tls.domains[0].main=cawnj.dev"
-      - "traefik.http.routers.uptimekuma.tls.domains[0].sans=*.cawnj.dev"
-      - "traefik.http.routers.uptimekuma.tls.domains[1].main=local.cawnj.dev"
-      - "traefik.http.routers.uptimekuma.tls.domains[1].sans=*.local.cawnj.dev"
       - "traefik.http.services.uptimekuma.loadbalancer.server.port=3001"
     networks:
       - proxy

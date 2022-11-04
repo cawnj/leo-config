@@ -27,9 +27,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.aria2.entrypoints=https"
       - "traefik.http.routers.aria2.rule=Host(`aria2.local.cawnj.dev`)"
-      - "traefik.http.routers.aria2.tls.certresolver=cloudflare"
-      - "traefik.http.routers.aria2.tls.domains[0].main=local.cawnj.dev"
-      - "traefik.http.routers.aria2.tls.domains[0].sans=*.local.cawnj.dev"
       - "traefik.http.services.aria2.loadbalancer.server.port=6800"
     networks:
       - proxy
@@ -47,9 +44,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.ariang.entrypoints=https"
       - "traefik.http.routers.ariang.rule=Host(`ariang.local.cawnj.dev`)"
-      - "traefik.http.routers.ariang.tls.certresolver=cloudflare"
-      - "traefik.http.routers.ariang.tls.domains[0].main=local.cawnj.dev"
-      - "traefik.http.routers.ariang.tls.domains[0].sans=*.local.cawnj.dev"
       - "traefik.http.services.ariang.loadbalancer.server.port=6880"
     networks:
       - proxy
