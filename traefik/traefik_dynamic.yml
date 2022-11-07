@@ -6,17 +6,21 @@ http:
         - "https"
       middlewares:
         - "plexHeaders"
-      tls:
-        certResolver: "cloudflare"
-        domains:
-          - main: "local.cawnj.dev"
-            sans: "*.local.cawnj.dev"
       service: "plex"
+    nomad:
+      rule: "Host(`nomad.local.cawnj.dev`)"
+      entryPoints:
+        - "https"
+      service: "nomad"
   services:
     plex:
       loadBalancer:
         servers:
           - url: "http://192.168.1.201:32400"
+    nomad:
+      loadBalancer:
+         servers:
+          - url: "http://192.168.1.201:4646"
   middlewares:
     plexHeaders:
       headers:
