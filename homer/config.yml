@@ -58,6 +58,9 @@ services:
       - name: "Filehost"
         logo: "custom-icons/filehost.png"
         url: "https://filehost.cawnj.dev/"
+      - name: "Nomad"
+        logo: "custom-icons/nomad.png"
+        url: "https://nomad.local.cawnj.dev/"
   - name: "Download"
     icon: "fas fa-download"
     items:
