@@ -79,6 +79,9 @@ services:
       - name: "AriaNg"
         logo: "homer-icons/png/ariang.png"
         url: "https://ariang.local.cawnj.dev/"
+      - name: "qBittorrent"
+        logo: "homer-icons/png/qbittorrent.png"
+        url: "https://qbittorrent.local.cawnj.dev/"
   - name: "Media"
     icon: "fas fa-video"
     items:
