@@ -10,6 +10,7 @@ services:
       NB_GID: 1000
       CHOWN_HOME: 'yes'
       CHOWN_HOME_OPTS: '-R'
+      JUPYTER_TOKEN: '${JUPYTER_TOKEN}'
     volumes:
       - /mnt/drive/data/jupyter:/home/jovyan/work
     labels:
