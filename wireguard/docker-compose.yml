@@ -25,5 +25,4 @@ services:
       - 51820:51820/udp
     volumes:
       - /mnt/drive/config/wireguard:/config
-      - /lib/modules:/lib/modules
 
