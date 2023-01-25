@@ -1,7 +1,7 @@
 api:
   dashboard: true
 
-accessLog: {}
+# accessLog: {}
 
 entryPoints:
   http:
