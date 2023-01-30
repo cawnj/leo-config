@@ -17,7 +17,7 @@ services:
       - TZ=Europe/Dublin
       - SERVERURL=wireguard.cawnj.dev
       - SERVERPORT=51820
-      - PEERS=laptop,phone,external
+      - PEERS=laptop,phone,external,jason
       - PEERDNS=auto
       - INTERNAL_SUBNET=10.13.13.0
       - ALLOWEDIPS=0.0.0.0/0, 192.168.1.0/24
