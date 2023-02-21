@@ -11,6 +11,8 @@ http:
       rule: "Host(`nomad.local.cawnj.dev`)"
       entryPoints:
         - "https"
+      middlewares:
+        - "nomadHeaders"
       service: "nomad"
   services:
     plex:
@@ -32,3 +34,7 @@ http:
         stsIncludeSubdomains: true
         stsPreload: true
         frameDeny: false
+    nomadHeaders:
+      headers:
+        customRequestHeaders:
+          Origin: "https://nomad.local.cawnj.dev"
