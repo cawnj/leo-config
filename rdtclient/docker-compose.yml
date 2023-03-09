@@ -3,7 +3,7 @@ version: '3.3'
 
 services:
   rdtclient:
-    image: rogerfar/rdtclient
+    image: rogerfar/rdtclient:2.0.19
     container_name: rdtclient
     restart: unless-stopped
     environment:
