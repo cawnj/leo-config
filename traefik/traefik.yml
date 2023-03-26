@@ -64,3 +64,6 @@ providers:
   nomad:
     endpoint:
       address: "http://192.168.1.201:4646"
+  consulCatalog:
+    endpoint:
+      address: "http://192.168.1.201:8500"
