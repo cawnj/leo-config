@@ -42,6 +42,8 @@ entryPoints:
             sans: "*.local.cawnj.dev"
           - main: "plusvasis.xyz"
             sans: "*.plusvasis.xyz"
+          - main: "local.plusvasis.xyz"
+            sans: "*.local.plusvasis.xyz"
 
 certificatesResolvers:
   cloudflare:
