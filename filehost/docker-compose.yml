@@ -5,6 +5,8 @@ services:
         image: "halverneus/static-file-server:latest"
         container_name: filehost
         restart: unless-stopped
+        environment:
+          - "DEBUG=true"
         volumes:
           - "/mnt/drive/data/filehost:/web"
         labels:
