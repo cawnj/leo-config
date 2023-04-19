@@ -1,0 +1,70 @@
+version: "3.3"
+services:
+  mail:
+    image: bytemark/smtp
+    container_name: plausible-mail
+    restart: always
+    networks:
+      - internal
+
+  plausible_db:
+    image: postgres:14-alpine
+    container_name: plausible-db
+    restart: always
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    networks:
+      - internal
+
+  plausible_events_db:
+    image: clickhouse/clickhouse-server:22.6-alpine
+    container_name: plausible-events-db
+    restart: always
+    volumes:
+      - event-data:/var/lib/clickhouse
+      - /mnt/drive/config/clickhouse/clickhouse-config.xml:/etc/clickhouse-server/config.d/logging.xml:ro
+      - /mnt/drive/config/clickhouse/clickhouse-user-config.xml:/etc/clickhouse-server/users.d/logging.xml:ro
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+    networks:
+      - internal
+
+  plausible:
+    image: plausible/analytics:v1.5
+    container_name: plausible
+    restart: always
+    command: sh -c "sleep 10 && /entrypoint.sh db createdb && /entrypoint.sh db migrate && /entrypoint.sh run"
+    depends_on:
+      - plausible_db
+      - plausible_events_db
+      - mail
+    environment:
+      - BASE_URL=${BASE_URL}
+      - SECRET_KEY_BASE=${SECRET_KEY_BASE}
+      - DATABASE_URL=${DATABASE_URL}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.plausible.entrypoints=https"
+      - "traefik.http.routers.plausible.rule=Host(`plausible.cawnj.dev`)"
+      - "traefik.http.services.plausible.loadbalancer.server.port=8000"
+    networks:
+      - proxy
+      - internal
+
+networks:
+  proxy:
+    external: true
+  internal:
+
+volumes:
+  db-data:
+    driver: local
+  event-data:
+    driver: local
+  geoip:
+    driver: local
+
