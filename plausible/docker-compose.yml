@@ -46,6 +46,8 @@ services:
       - BASE_URL=${BASE_URL}
       - SECRET_KEY_BASE=${SECRET_KEY_BASE}
       - DATABASE_URL=${DATABASE_URL}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.plausible.entrypoints=https"
