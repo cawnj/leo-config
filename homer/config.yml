@@ -61,6 +61,9 @@ services:
       - name: "Nomad"
         logo: "custom-icons/nomad.png"
         url: "https://nomad.local.cawnj.dev/"
+      - name: "Plausible"
+        logo: "custom-icons/plausible.png"
+        url: "https://plausible.cawnj.dev/"
   - name: "Download"
     icon: "fas fa-download"
     items:
@@ -97,6 +100,9 @@ services:
       - name: "Pasta"
         logo: "custom-icons/pasta.png"
         url: "https://pasta.local.cawnj.dev/"
+      - name: "Jellyfin"
+        logo: "homer-icons/png/jellyfin.png"
+        url: "https://jellyfin.local.cawnj.dev"
   - name: "Personal"
     icon: "fas fa-user"
     items:
@@ -113,6 +119,6 @@ services:
         logo: "custom-icons/hastebin.png"
         url: "https://hastebin.cawnj.dev/"
       - name: "Uptime Kuma"
-        logo: "custom-icons/uptime-kuma.png"
+        logo: "homer-icons/png/uptimekuma.png"
         url: "https://status.cawnj.dev"
 
