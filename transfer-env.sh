@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REMOTE=192.168.1.201
+REMOTE=192.168.0.201
 USER=cj
 CONFIG_DIR=/etc/leo-config
 

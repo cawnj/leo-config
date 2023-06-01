@@ -23,15 +23,15 @@ http:
     plex:
       loadBalancer:
         servers:
-          - url: "http://192.168.1.201:32400"
+          - url: "http://192.168.0.201:32400"
     nomad:
       loadBalancer:
         servers:
-          - url: "http://192.168.1.201:4646"
+          - url: "http://192.168.0.201:4646"
     webhook:
       loadBalancer:
         servers:
-          - url: "http://192.168.1.201:9000"
+          - url: "http://192.168.0.201:9000"
   middlewares:
     plexHeaders:
       headers:
