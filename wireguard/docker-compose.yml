@@ -20,7 +20,7 @@ services:
       - PEERS=laptop,phone,external,jason
       - PEERDNS=auto
       - INTERNAL_SUBNET=10.13.13.0
-      - ALLOWEDIPS=0.0.0.0/0, 192.168.1.0/24
+      - ALLOWEDIPS=0.0.0.0/0, 192.168.0.0/24
     ports:
       - 51820:51820/udp
     volumes:
