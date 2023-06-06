@@ -5,6 +5,9 @@ services:
     image: tailscale/tailscale
     container_name: tailscale
     restart: unless-stopped
+    environment:
+      TS_AUTHKEY: ${TS_AUTHKEY}
+      TS_ROUTES: '192.168.0.0/24'
     volumes:
      - '/var/lib:/var/lib'
      - '/dev/net/tun:/dev/net/tun'
