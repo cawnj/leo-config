@@ -15,18 +15,8 @@ services:
     restart: 'unless-stopped'
     environment:
       - JELLYFIN_PublishedServerUrl=https://jellyfin.local.cawnj.dev
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.jellyfin.entrypoints=https"
-      - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.local.cawnj.dev`)"
-      - "traefik.http.services.jellyfin.loadbalancer.server.port=8096"
-    networks:
-      - proxy
     devices:
       - /dev/dri/renderD128:/dev/dri/renderD128
       - /dev/dri/card0:/dev/dri/card0
-
-networks:
-  proxy:
-    external: true
+    network_mode: host
 

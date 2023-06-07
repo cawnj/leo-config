@@ -19,6 +19,11 @@ http:
       entryPoints:
         - "https"
       service: "webhook"
+    jellyfin:
+      rule: "Host(`jellyfin.local.cawnj.dev`)"
+      entryPoints:
+        - "https"
+      service: "jellyfin"
   services:
     plex:
       loadBalancer:
@@ -32,6 +37,10 @@ http:
       loadBalancer:
         servers:
           - url: "http://192.168.0.201:9000"
+    jellyfin:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.0.201:8096"
   middlewares:
     plexHeaders:
       headers:
