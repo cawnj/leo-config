@@ -8,8 +8,9 @@ services:
     environment:
       TS_AUTHKEY: ${TS_AUTHKEY}
       TS_ROUTES: '192.168.0.0/24'
+      TS_STATE_DIR: "/var/lib/tailscale"
     volumes:
-     - '/var/lib:/var/lib'
+     - '/var/lib/tailscale:/var/lib/tailscale'
      - '/dev/net/tun:/dev/net/tun'
     network_mode: host
     cap_add:
