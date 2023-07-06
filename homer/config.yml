@@ -121,4 +121,7 @@ services:
       - name: "Uptime Kuma"
         logo: "homer-icons/png/uptimekuma.png"
         url: "https://status.cawnj.dev"
+      - name: "Glances"
+        logo: "custom-icons/glances.png"
+        url: "https://glances.local.cawnj.dev/"
 
