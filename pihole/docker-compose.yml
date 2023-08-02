@@ -10,7 +10,6 @@ services:
       - WEBPASSWORD=${WEBPASSWORD}
       - FTLCONF_LOCAL_IPV4=192.168.0.201
       - PIHOLE_DNS_=1.1.1.1;1.0.0.1
-      - DNSSEC=true
       - PIHOLE_UID=1000
       - PIHOLE_GID=1000
     volumes:
