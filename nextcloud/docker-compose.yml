@@ -7,6 +7,7 @@ services:
     restart: unless-stopped
     depends_on:
       - db
+      - redis
     environment:
       - PUID=1000
       - PGID=1000
@@ -19,6 +20,7 @@ services:
       - NEXTCLOUD_TRUSTED_DOMAINS=nextcloud.cawnj.dev,nextcloud.local.cawnj.dev
       - TRUSTED_PROXIES=traefik
       - OVERWRITEPROTOCOL=https
+      - REDIS_HOST=nextcloud-redis
     volumes:
       - /mnt/drive/config/nextcloud:/var/www/html
       - /mnt/drive/data/nextcloud:/var/www/html/data
@@ -55,9 +57,18 @@ services:
       - MYSQL_USER=nextcloud
     networks:
       - internal
+  redis:
+    image: redis:alpine
+    container_name: nextcloud-redis
+    restart: unless-stopped
+    volumes:
+      - redis:/data
+    networks:
+      - internal
 
 volumes:
   db:
+  redis:
 
 networks:
   internal:
