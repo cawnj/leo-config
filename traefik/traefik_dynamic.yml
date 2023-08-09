@@ -24,6 +24,11 @@ http:
       entryPoints:
         - "https"
       service: "jellyfin"
+    atlas:
+      rule: "Host(`synology.local.cawnj.dev`)"
+      entryPoints:
+        - "https"
+      service: "synology"
   services:
     plex:
       loadBalancer:
@@ -41,6 +46,10 @@ http:
       loadBalancer:
         servers:
           - url: "http://192.168.0.201:8096"
+    synology:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.0.137:5000"
   middlewares:
     plexHeaders:
       headers:
