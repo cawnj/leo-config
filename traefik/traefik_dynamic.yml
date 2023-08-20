@@ -29,11 +29,41 @@ http:
       entryPoints:
         - "https"
       service: "synology"
+    sonarr:
+      rule: "Host(`sonarr.local.cawnj.dev`)"
+      entryPoints:
+        - "https"
+      service: "sonarr"
+    radarr:
+      rule: "Host(`radarr.local.cawnj.dev`)"
+      entryPoints:
+        - "https"
+      service: "radarr"
+    prowlarr:
+      rule: "Host(`prowlarr.local.cawnj.dev`)"
+      entryPoints:
+        - "https"
+      service: "prowlarr"
+    ariang:
+      rule: "Host(`ariang.local.cawnj.dev`)"
+      entryPoints:
+        - "https"
+      service: "ariang"
+    aria2:
+      rule: "Host(`aria2.local.cawnj.dev`)"
+      entryPoints:
+        - "https"
+      service: "aria2"
+    rdtclient:
+      rule: "Host(`rdtclient.local.cawnj.dev`)"
+      entryPoints:
+        - "https"
+      service: "rdtclient"
   services:
     plex:
       loadBalancer:
         servers:
-          - url: "http://192.168.0.201:32400"
+          - url: "http://192.168.0.137:32400"
     nomad:
       loadBalancer:
         servers:
@@ -50,6 +80,30 @@ http:
       loadBalancer:
         servers:
           - url: "http://192.168.0.137:5000"
+    sonarr:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.0.137:8989"
+    radarr:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.0.137:7878"
+    prowlarr:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.0.137:9696"
+    ariang:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.0.137:6880"
+    aria2:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.0.137:6800"
+    rdtclient:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.0.137:6500"
   middlewares:
     plexHeaders:
       headers:
