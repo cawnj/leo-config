@@ -59,6 +59,16 @@ http:
       entryPoints:
         - "https"
       service: "rdtclient"
+    tautulli:
+      rule: "Host(`tautulli.local.cawnj.dev`)"
+      entryPoints:
+        - "https"
+      service: "tautulli"
+    overseerr:
+      rule: "Host(`overseerr.local.cawnj.dev`) || Host(`overseerr.cawnj.dev`)"
+      entryPoints:
+        - "https"
+      service: "overseerr"
   services:
     plex:
       loadBalancer:
@@ -104,6 +114,14 @@ http:
       loadBalancer:
         servers:
           - url: "http://192.168.0.137:6500"
+    tautulli:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.0.137:8181"
+    overseerr:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.0.137:5055"
   middlewares:
     plexHeaders:
       headers:
