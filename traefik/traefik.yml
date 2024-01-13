@@ -46,6 +46,10 @@ entryPoints:
             sans: "*.plusvasis.xyz"
           - main: "local.plusvasis.xyz"
             sans: "*.local.plusvasis.xyz"
+          - main: "theartifact.dev"
+            sans: "*.theartifact.dev"
+          - main: "hotfix.ing"
+            sans: "*.hotfix.ing"
 
 certificatesResolvers:
   cloudflare:
