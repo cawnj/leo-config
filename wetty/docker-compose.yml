@@ -8,7 +8,7 @@ services:
     restart: unless-stopped
     command:
       - --base=/
-      - --ssh-host=192.168.0.201
+      - --ssh-host=192.168.1.201
       - --ssh-key=/root/.ssh/ssh-key
       - --ssh-auth=publickey
     volumes:
