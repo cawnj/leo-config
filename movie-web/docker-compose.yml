@@ -17,7 +17,7 @@ services:
 
   frontend:
     build:
-      context: https://github.com/movie-web/movie-web.git
+      context: https://github.com/cawnj/movie-web.git#custom
       args:
         TMDB_READ_API_KEY: $TMDB_READ_API_KEY
         CORS_PROXY_URL: "https://movie-proxy.cawnj.dev"
@@ -25,7 +25,6 @@ services:
         DMCA_EMAIL: "dmca@cawnj.dev"
         HAS_ONBOARDING: "true"
         ONBOARDING_CHROME_EXTENSION_INSTALL_LINK: "https://chromewebstore.google.com/detail/movie-web-extension/hoffoikpiofojilgpofjhnkkamfnnhmm"
-
     container_name: movie-web-frontend
     restart: unless-stopped
     labels:
