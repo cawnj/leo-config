@@ -23,7 +23,7 @@ services:
         CORS_PROXY_URL: "https://movie-proxy.cawnj.dev"
         BACKEND_URL: "https://movie-backend.cawnj.dev"
         DMCA_EMAIL: "dmca@cawnj.dev"
-        HAS_ONBOARDING: "true"
+        HAS_ONBOARDING: "false"
         ONBOARDING_CHROME_EXTENSION_INSTALL_LINK: "https://chromewebstore.google.com/detail/movie-web-extension/hoffoikpiofojilgpofjhnkkamfnnhmm"
     container_name: movie-web-frontend
     restart: unless-stopped
