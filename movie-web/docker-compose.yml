@@ -1,0 +1,78 @@
+version: "3"
+
+services:
+  proxy:
+    image: ghcr.io/movie-web/simple-proxy:latest
+    container_name: movie-web-proxy
+    restart: unless-stopped
+    environment:
+      JWT_SECRET: $JWT_SECRET
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.movie-web-proxy.entrypoints=https"
+      - "traefik.http.routers.movie-web-proxy.rule=Host(`movie-proxy.cawnj.dev`)"
+      - "traefik.http.services.movie-web-proxy.loadbalancer.server.port=3000"
+    networks:
+      - proxy
+
+  frontend:
+    build:
+      context: https://github.com/movie-web/movie-web.git
+      args:
+        TMDB_READ_API_KEY: $TMDB_READ_API_KEY
+        CORS_PROXY_URL: "https://movie-proxy.cawnj.dev"
+        BACKEND_URL: "https://movie-backend.cawnj.dev"
+        DMCA_EMAIL: "dmca@cawnj.dev"
+        HAS_ONBOARDING: "true"
+        ONBOARDING_CHROME_EXTENSION_INSTALL_LINK: "https://chromewebstore.google.com/detail/movie-web-extension/hoffoikpiofojilgpofjhnkkamfnnhmm"
+
+    container_name: movie-web-frontend
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.movie-web-frontend.entrypoints=https"
+      - "traefik.http.routers.movie-web-frontend.rule=Host(`movie.cawnj.dev`)"
+      - "traefik.http.services.movie-web-frontend.loadbalancer.server.port=80"
+    networks:
+      - proxy
+
+  postgres:
+    image: postgres
+    container_name: movie-web-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: movie_web_user 
+      POSTGRES_DB: movie_web_backend 
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+    networks:
+      - movie-web-network
+
+  backend:
+    image: ghcr.io/movie-web/backend:latest
+    container_name: movie-web-backend
+    restart: unless-stopped
+    environment:
+      MWB_POSTGRES__CONNECTION: postgresql://movie_web_user:$POSTGRES_PASSWORD@postgres:5432/movie_web_backend
+      MWB_CRYPTO__SESSION_SECRET: $MWB_CRYPTO__SESSION_SECRET
+      MWB_META__NAME: movie.cawnj.dev 
+      MWB_SERVER__CORS: "https://movie.cawnj.dev"
+      MWB_SERVER__TRUST_PROXY: "true"
+      MWB_SERVER__TRUST_CLOUDFLARE: "true"
+      MWB_POSTGRES__MIGRATE_ON_BOOT: "true"
+      MIKRO_ORM_MIGRATIONS_DISABLE_FOREIGN_KEYS: "true"
+    depends_on:
+      - postgres
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.movie-web-backend.entrypoints=https"
+      - "traefik.http.routers.movie-web-backend.rule=Host(`movie-backend.cawnj.dev`)"
+      - "traefik.http.services.movie-web-backend.loadbalancer.server.port=80"
+    networks:
+      - movie-web-network
+      - proxy
+
+networks:
+  proxy:
+    external: true
+  movie-web-network:
+    driver: bridge
