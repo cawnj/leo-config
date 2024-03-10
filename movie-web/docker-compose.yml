@@ -1,12 +1,26 @@
 version: "3"
 
 services:
+  proxy:
+    image: ghcr.io/movie-web/simple-proxy:latest
+    container_name: movie-web-proxy
+    restart: unless-stopped
+    environment:
+      JWT_SECRET: $JWT_SECRET
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.movie-web-proxy.entrypoints=https"
+      - "traefik.http.routers.movie-web-proxy.rule=Host(`movie-proxy.cawnj.dev`)"
+      - "traefik.http.services.movie-web-proxy.loadbalancer.server.port=3000"
+    networks:
+      - proxy
+
   frontend:
     build:
       context: https://github.com/cawnj/movie-web.git#custom
       args:
         TMDB_READ_API_KEY: $TMDB_READ_API_KEY
-        CORS_PROXY_URL: "https://simple-proxy.conor-joyce.workers.dev"
+        CORS_PROXY_URL: "https://movie-proxy.cawnj.dev"
         BACKEND_URL: "https://movie-backend.cawnj.dev"
         DMCA_EMAIL: "dmca@cawnj.dev"
         HAS_ONBOARDING: "false"
