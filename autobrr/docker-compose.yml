@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  autobrr:
+    image: ghcr.io/autobrr/autobrr:latest
+    container_name: autobrr
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-file: 7 
+        max-size: 10240
+    user: 1000:1000
+    environment:
+      TZ: Europe/Dublin
+    volumes:
+      - /mnt/drive/config/autobrr:/config
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.autobrr.entrypoints=https"
+      - "traefik.http.routers.autobrr.rule=Host(`autobrr.local.cawnj.dev`)"
+      - "traefik.http.services.autobrr.loadbalancer.server.port=7474"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
+
