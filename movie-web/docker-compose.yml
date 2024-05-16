@@ -2,7 +2,7 @@ version: "3"
 
 services:
   proxy:
-    image: ghcr.io/movie-web/simple-proxy:latest
+    image: ghcr.io/sussy-code/sudo-proxy:latest
     container_name: movie-web-proxy
     restart: unless-stopped
     environment:
@@ -17,7 +17,7 @@ services:
 
   frontend:
     build:
-      context: https://github.com/cawnj/movie-web.git#custom
+      context: https://github.com/sussy-code/smov.git
       args:
         TMDB_READ_API_KEY: $TMDB_READ_API_KEY
         CORS_PROXY_URL: "https://movie-proxy.cawnj.dev"
@@ -47,7 +47,7 @@ services:
       - movie-web-network
 
   backend:
-    image: ghcr.io/movie-web/backend:latest
+    image: ghcr.io/sussy-code/backend:latest
     container_name: movie-web-backend
     restart: unless-stopped
     environment:
