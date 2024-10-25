@@ -13,11 +13,14 @@ services:
     volumes:
       - /mnt/drive/config/qbittorrent:/config
       - /mnt/drive/data/qbittorrent:/downloads
+      - /home/cj/qbittorrent-tmp:/downloads-tmp
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.qbittorrent.entrypoints=https"
       - "traefik.http.routers.qbittorrent.rule=Host(`qbittorrent.local.cawnj.dev`)"
       - "traefik.http.services.qbittorrent.loadbalancer.server.port=8080"
+    ports:
+      - 19766:19766
     networks:
       - proxy
 

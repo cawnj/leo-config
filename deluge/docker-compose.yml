@@ -18,6 +18,8 @@ services:
       - "traefik.http.routers.deluge.entrypoints=https"
       - "traefik.http.routers.deluge.rule=Host(`deluge.local.cawnj.dev`)"
       - "traefik.http.services.deluge.loadbalancer.server.port=8112"
+    ports:
+      - 16253:16253
     networks:
       - proxy
 
