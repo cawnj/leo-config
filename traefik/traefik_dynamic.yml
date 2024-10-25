@@ -1,5 +1,9 @@
 http:
   routers:
+    bulbaserver:
+      rule: "Host(`*.joaopereira.ie`)"
+      servie: "bulbaserver"
+      tls: {}
     plex:
       rule: "Host(`plex.local.cawnj.dev`)"
       entryPoints:
@@ -70,6 +74,11 @@ http:
         - "https"
       service: "overseerr"
   services:
+    bulbaserver:
+      loadBalancer:
+        servers:
+          - url: "https://192.168.1.111:443"
+        serversTransport: bulbaserver
     plex:
       loadBalancer:
         servers:
@@ -122,6 +131,9 @@ http:
       loadBalancer:
         servers:
           - url: "http://192.168.1.137:5055"
+  serversTransports:
+    bulbaserver:
+      insecureSkipVerify: true
   middlewares:
     plexHeaders:
       headers:
