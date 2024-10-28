@@ -1,9 +1,9 @@
 api:
   dashboard: true
 
-accessLog: {}
+  # accessLog: {}
 log:
-  level: DEBUG
+  # level: DEBUG
 
 entryPoints:
   http:
