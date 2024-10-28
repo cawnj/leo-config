@@ -1,7 +1,7 @@
 http:
   routers:
     bulbaserver:
-      rule: "Host(`*.joaopereira.ie`)"
+      rule: "Host(`joaopereira.ie`) || Host(`*.joaopereira.ie`)"
       servie: "bulbaserver"
       tls: {}
     plex:
