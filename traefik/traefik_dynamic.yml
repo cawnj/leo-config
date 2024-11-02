@@ -1,11 +1,10 @@
 http:
   routers:
     bulbaserver:
-      rule: "HostRegexp(`{subdomain:[a-z0-9-]+}.joaopereira.ie`)"
-      service: "bulbaserver"
+      rule: "HostSNI(`*.joaopereira.ie`)"
+      service: bulbaserver
       tls:
         passthrough: true
-      priority: 100
     plex:
       rule: "Host(`plex.local.cawnj.dev`)"
       entryPoints:
@@ -77,10 +76,9 @@ http:
       service: "overseerr"
   services:
     bulbaserver:
-      loadBalancer:
+      loadbalancer:
         servers:
-          - url: "https://192.168.1.111:443"
-        passHostHeader: true
+          - address: "192.168.1.111:443"
     plex:
       loadBalancer:
         servers:
