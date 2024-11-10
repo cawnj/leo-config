@@ -138,15 +138,3 @@ http:
         customRequestHeaders:
           Origin: "https://nomad.local.cawnj.dev"
 
-tcp:
-  routers:
-    bulbaserver:
-      rule: "HostSNI(`joaopereira.ie`) || HostSNI(`.joaopereira.ie`)" 
-      service: bulbaserver
-      tls: {}
-  services:
-    bulbaserver:
-      loadBalancer:
-        servers:
-          - address: "192.168.1.111:443"
-
