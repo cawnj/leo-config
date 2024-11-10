@@ -1,10 +1,5 @@
 http:
   routers:
-    bulbaserver:
-      rule: "HostSNI(`*.joaopereira.ie`)"
-      service: bulbaserver
-      tls:
-        passthrough: true
     plex:
       rule: "Host(`plex.local.cawnj.dev`)"
       entryPoints:
@@ -75,10 +70,6 @@ http:
         - "https"
       service: "overseerr"
   services:
-    bulbaserver:
-      loadbalancer:
-        servers:
-          - address: "192.168.1.111:443"
     plex:
       loadBalancer:
         servers:
@@ -146,3 +137,16 @@ http:
       headers:
         customRequestHeaders:
           Origin: "https://nomad.local.cawnj.dev"
+
+tcp:
+  routers:
+    bulbaserver:
+      rule: "HostSNI(`joaopereira.ie`) || HostSNI(`.joaopereira.ie`)" 
+      service: bulbaserver
+      tls: {}
+  services:
+    bulbaserver:
+      loadBalancer:
+        servers:
+          - address: "192.168.1.111:443"
+
